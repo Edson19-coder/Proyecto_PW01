@@ -1,0 +1,48 @@
+body{
+    background: url('https://clearlaketheatre.com/wp-content/uploads/2011/07/Joker-Backdrop.jpg') no-repeat;
+    background: url('https://www.diariovivo.com/wp-content/uploads/2020/04/14-1.png') no-repeat;
+    background: url('https://www.gratistodo.com/wp-content/uploads/2016/09/el-hogar-de-miss-peregrine-para-ni%C3%B1os-peculiares-imagenes-hd.jpg') no-repeat;
+    background: url('https://i.pinimg.com/originals/9e/d5/41/9ed541a71ed31685de63858192d7820b.jpg') no-repeat;  
+    background: url('https://images.alphacoders.com/847/thumb-1920-847742.jpg') no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: auto;
+}
+
+.form-container{
+    position: absolute;
+    top: 1vh;
+    left: auto;
+    right: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
+label{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#ingresar-btn{
+    background-color: #7e57c2;
+    border-color: #7e57c2;
+}
+
+.a-register{
+    color: black;
+    
+}
+
+a:hover{
+    color: blueviolet;
+}
+
+#account-btn{
+    background-color: #4a148c;
+}
+
+div.container
+{
+    background-color:#7e57c2;
+}
