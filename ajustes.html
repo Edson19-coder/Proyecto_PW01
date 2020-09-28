@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Mis Ajustes</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -20,11 +20,12 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/ajustes.css">
+
 </head>
 
 <body>
-
     <div class="nav-bar">
 
         <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #7e57c2; ">
@@ -48,7 +49,7 @@
             </ul>
             <div class="btn-group dropdown" style="margin-right: 20px;">
                 <button type="button" class="btn btn-secondary fas fa-user-circle" id="account-btn">
-                    Cuenta
+                    Cuenta de Usuario
                 </button>
                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split "
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="account-btn">
@@ -56,10 +57,19 @@
                 </button>
                 <div class="dropdown-menu">
                     <!-- Dropdown menu links -->
-                    <a class="dropdown-item " href="login.html"> <i class='fas fa-sign-in-alt' style="margin: 5px;"></i>
-                        Ingresar</a>
-                    <a class="dropdown-item" href="register.html"> <i class='fas fa-money-check'
-                            style="margin: 5px;"></i>Registrarse</a>
+                    <a class="dropdown-item " href="#"> <i class='fas fa-cogs' style="margin: 5px;"></i> Ajustes</a>
+                    <a class="dropdown-item " href="#"> <i class='far fa-bookmark' style="margin: 5px;"></i> Noticas
+                        guardadas</a>
+                    <a class="dropdown-item " href="#"> <i class='fas fa-bell' style="margin: 5px;"></i>
+                        Interacciones</a>
+                    <a class="dropdown-item " href="#"> <i class='fas fa-plus' style="margin: 5px;"></i> Crear
+                        noticia</a>
+                    <a class="dropdown-item " href="#"> <i class='fas fa-book' style="margin: 5px;"></i> Mis
+                        publicaciones</a>
+                    <a class="dropdown-item " href="#"> <i class='fas fa-clipboard-list' style="margin: 5px;"></i>
+                        Revisión</a>
+                    <a class="dropdown-item" href="home_a_default.html"> <i class='	fas fa-sign-out-alt'
+                            style="margin: 5px;"></i>Salir</a>
                 </div>
             </div>
 
@@ -99,36 +109,21 @@
 
     </div>
 
-    <section class="container-fluid">
-        <section class="row justify-content-center">
-            <section class="col-12 col-sm-6 col-md-3">
-                <form class="form-container">
-                    <div class="form-group">
-                        <label for="InputEmail1">NOMBRE DE USUARIO</label>
-                        <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
-
-                        <label for="InputEmail1">EMAIL</label>
-                        <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="InputPassword1">CONTRASEÑA</label>
-                        <input type="password" class="form-control" id="InputPassword1">
-                    </div>
-                    <div class="form-group">
-                        <label for="InputPassword1">CONFIRMAR CONTRASEÑA</label>
-                        <input type="password" class="form-control" id="InputPassword1">
-                    </div>
-                    <small id="emailHelp" class="form-text text-muted">La informacion proporcionado en este sitio
-                        web nunca sera compartida.</small>
-
-                    <button type="submit" class="btn btn-primary btn-block" id="ingresar-btn">Registrarse</button>
-                    <a class="a-register" href="login.html">Ingresar </a>
-                </form>
-            </section>
-        </section>
-    </section>
-
+    <!-- <div  style="height: 560px; width: 250px; background-color: #7e57c2;"></div> -->
+    <div class="bd-container-sidebar">
+        <a class="dropdown-item " href="#"> <i class='fas fa-cogs' style="margin: 5px;"></i> Mis ajustes</a>
+        <a class="dropdown-item " href="#"> <i class='far fa-bookmark' style="margin: 5px;"></i> Noticas guardadas</a>
+        <a class="dropdown-item " href="#"> <i class='fas fa-bell' style="margin: 5px;"></i> Interacciones</a>
+        <a class="dropdown-item " href="#"> <i class='fas fa-exclamation-triangle' style="margin: 5px;"></i>
+            Amolestaciones</a>
+        <a class="dropdown-item " href="#"> <i class='fas fa-plus' style="margin: 5px;"></i> Crear noticia</a>
+        <a class="dropdown-item " href="#"> <i class='far fa-file' style="margin: 5px;"></i> Borradores</a>
+        <a class="dropdown-item " href="#"> <i class='fas fa-book' style="margin: 5px;"></i> Mis publicaciones</a>
+        <a class="dropdown-item " href="#"> <i class='fas fa-clipboard-list' style="margin: 5px;"></i> Revisión</a>
+        <a class="dropdown-item" href="home_a_default.html"> <i class='	fas fa-sign-out-alt'
+                style="margin: 5px;"></i>Salir</a>
+    </div>
+    <div class="bd-container-body">Hola</div>
 </body>
 
 </html>

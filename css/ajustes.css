@@ -1,0 +1,24 @@
+.bd-container-sidebar {
+  float: left;
+  width: 200px;
+  height: 600px;
+  background-color: #7e57c2;
+  border-radius: 0.25rem;
+  text-align: left;
+}
+
+.bd-container-body {
+  height: 600px;
+  margin-right: 5px;
+  background-color: #ecebf0;
+  border-radius: 5px;
+}
+
+.bd-container-sidebar a,
+a:active {
+  margin-top: 10px;
+}
+
+.bd-container-sidebar a:active {
+  background: #4a148c !important;
+}
