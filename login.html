@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <div class="nav-bar">
+
+        <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #7e57c2; ">
+
+            <a class="navbar-brand" href="home_a_default.html">Cinews</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <ul class="navbar-nav mr-auto ml-auto w-50">
+                <div class="input-group md-form form-sm form-2 pl-0">
+                    <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search"
+                        aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="input-group-text amber lighten-3" id="basic-text1"><i
+                                class="fas fa-search text-grey" aria-hidden="true"></i></button>
+                    </div>
+            </ul>
+            <div class="btn-group dropdown" style="margin-right: 20px;">
+                <button type="button" class="btn btn-secondary fas fa-user-circle" id="account-btn">
+                    Cuenta
+                </button>
+                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split "
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="account-btn">
+                    <span class="sr-only ">Toggle Dropright</span>
+                </button>
+                <div class="dropdown-menu">
+                    <!-- Dropdown menu links -->
+                    <a class="dropdown-item " href="#"> <i class='fas fa-sign-in-alt' style="margin: 5px;"></i>
+                        Ingresar</a>
+                    <a class="dropdown-item" href="#"> <i class='fas fa-money-check'
+                            style="margin: 5px;"></i>Registrarse</a>
+                </div>
+            </div>
+
+
+        </nav>
+
+    </div>
+
+    <div class="nav-bar-2">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="home_a_default.html">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Peliculas <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Series <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Estrenos <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Reseñas <span class="sr-only">(current)</span></a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+
+    <section class="container-fluid">
+        <section class="row justify-content-center">
+            <section class="col-12 col-sm-6 col-md-3">
+                <form class="form-container" >
+                    <div class="form-group">
+                        <label for="InputEmail1">EMAIL</label>
+                        <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">La informacion proporcionado en este sitio
+                            web nunca sera compartida.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputPassword1">CONTRASEÑA</label>
+                        <input type="password" class="form-control" id="InputPassword1">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Check1">
+                        <label class="form-check-label" for="Check1">Recordar cuenta.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="ingresar-btn" >Ingresar</button>
+                    <a class="a-register" href="">Registrarse </a>
+                </form>
+            </section>
+        </section>
+    </section>
+
+</body>
+
+</html>
