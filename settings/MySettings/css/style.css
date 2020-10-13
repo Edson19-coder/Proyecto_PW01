@@ -1,0 +1,93 @@
+#wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+.list-group-item:hover, .select{
+  background-color: #aa66cc;
+  color: black;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  /* Se oculta sidebar */
+  #wrapper.toggled #sidebar-wrapper { 
+    margin-left: -15rem;
+  }
+}
+
+.right-container{
+  padding-top: 40px;
+}
+
+.imgOrbed{
+  width: 200px;
+  height: 200px;
+  border-radius: 150px;
+}
+
+.camara-icon{
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 150px;
+  top: 60px;
+  right: 40px;
+}
+
+.user-image{
+  padding-left: 40px;
+  padding-bottom: 10px;
+}
+
+.change-photo-id{
+  position: absolute;
+  bottom: 330px; 
+  left: 90px; 
+  color: black;
+  opacity: 0%;
+  transition: .5s;
+}
+
+.user-img:hover > img{
+  filter: blur(1px);
+}
+.user-img:hover > h5{
+  opacity: 100%;
+}
+
+input[type="text"],[type="password"],[type="email"]{
+  width: 300px;
+}

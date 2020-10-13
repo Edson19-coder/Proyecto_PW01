@@ -1,0 +1,23 @@
+.dropdown {
+  margin-right: 20px;
+}
+
+.main-nav-bar {
+  position: relative;
+  z-index: 1000;
+}
+
+.secondary-nav-bar {
+  z-index: 500;
+}
+
+.secondary-nav-bar a{
+  text-align: center;
+  margin: 0px 100px;
+  transition: 0.2s;
+}
+
+.secondary-nav-bar a:hover{
+  border-bottom: 2px solid #aa66cc;
+  color: #aa66cc !important;
+}
