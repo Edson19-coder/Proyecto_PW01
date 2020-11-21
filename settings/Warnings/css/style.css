@@ -29,6 +29,14 @@
   min-width: 100vw;
 }
 
+#advertencia {
+  min-width: 0;
+  /*width: 100%; */
+  width: 500px ;
+  position: absolute;
+  left: 500px; 
+}
+
 #wrapper.toggled #sidebar-wrapper {
   margin-left: 0;
 }
@@ -42,6 +50,15 @@
     min-width: 0;
     width: 100%;
   }
+
+#advertencia {
+  min-width: 0;
+  /*width: 100%; */
+  width: 500px ;
+  position: absolute;
+  left: 500px; 
+}
+
   /* Se oculta sidebar */
   #wrapper.toggled #sidebar-wrapper { 
     margin-left: -15rem;
