@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create News</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -87,13 +87,13 @@
             </div>
         </div>
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div id ="page-content-wrapper">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <button class="btn btn-primary" id="menu-toggle">Menu</button>
             </nav>
-
-            <div class="container-fluid text-center">
+        </div>
+            <div id = "noticia" class="container-fluid text-center">
                 <form action="" class="" style="padding-top: 20px;">
                     <div class="form-group">
                         <input type="text" titulo="" tit="" placeholder="Título" class="form-control">
@@ -102,12 +102,21 @@
                         <input type="text" descripcion="" desc="" placeholder="Descripción" class="form-control">
                     </div>
                     <div class="form-group">
+                        <input type="text" categoria="" cat="" placeholder="Categoria" class="form-control">
+                    </div>
+                    <form>
+                        <div class="form-group">
+                          <label for="exampleFormControlFile1">Selecciona un archivo</label>
+                          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                      </form>
+                    <div class="form-group">
                         <input type="text" publi="" pa="" placeholder="Publicar algo" class="form-control" style="height: 300px;">
                     </div>
                     <button id="btn-login-id" type="submit" class="btn btn-primary col-3">Create</button>
                 </form>
                 </div> 
-        </div>
+       
     </div>
     <!-- Menu Toggle Script -->
     <script src="js/menu-toggle.js"></script>
