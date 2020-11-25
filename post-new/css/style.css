@@ -224,7 +224,7 @@ body {
    margin-left: 14px;
    position: relative;
    top: 2px;
-   color: #A6A6A6;
+   color: #aa66cc;/* color de los corazones en los comentarios*/
    cursor: pointer;
    -webkit-transition: color 0.3s ease;
    -o-transition: color 0.3s ease;
@@ -265,10 +265,10 @@ body {
    border-radius: 0 0 4px 4px;
 }
 
-.comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #03658c;}
+.comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #aa66cc;}
 .comment-box .comment-name.by-author:after {
    content: 'autor';
-   background: #03658c;
+   background: #aa66cc;
    color: #FFF;
    font-size: 12px;
    padding: 3px 5px;
@@ -296,4 +296,23 @@ body {
    }
 }
 
+.fas
+{
+   color:#aa66cc;
+}
 
+.far 
+{
+   color: #aa66cc;
+}
+
+.comment-box:after
+{
+   float: right;
+}
+
+.cuenta
+{
+   color: #ffffff;
+
+}

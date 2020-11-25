@@ -18,14 +18,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
      <!--------------------------------------------------------- FIRST NAVBAR --------------------------------------------------------->
      <nav class="navbar navbar-expand-lg navbar-dark main-nav-bar" style="background-color: #aa66cc;">
         <a href="" class="navbar-brand">CineNews
-            <svg id="icono" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-film" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0h8v6H4V1zm8 8H4v6h8V9zM1 1h2v2H1V1zm2 3H1v2h2V4zM1 7h2v2H1V7zm2 3H1v2h2v-2zm-2 3h2v2H1v-2zM15 1h-2v2h2V1zm-2 3h2v2h-2V4zm2 3h-2v2h2V7zm-2 3h2v2h-2v-2zm2 3h-2v2h2v-2z"/>
-              </svg>
+            <i class="material-icons" style="font-size:18px;color:rgb(255, 255, 255)">movie_filter</i>
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -40,12 +45,7 @@
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account
                         
-                           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                            <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                            <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                        </svg>
-                        </a>
+                           <i class='far fa-user-circle' style='font-size:17px;color:rgba(255, 255, 255, 0.432)'></i>                        </a>
                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                <a href="#" class="dropdown-item">Login</a>
                              <a href="#" class="dropdown-item">Register</a>
@@ -84,11 +84,19 @@
         <hr>
         <div class="titulo text-center">
             <div class="card-title  text-center">   
+                <div class="bote text-right"> 
+                    <a href="#" class="" >
+                        <i class='far fa-trash-alt' style='font-size:24px'></i>  
+                        <a href="#" class="" >
+                        <i class='far fa-save' style='font-size:24px'></i>                                   
+                      </a>
+                    </a>
+                </div>
                 <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcZJIwdCzYcPsSf2voQZjpVaWsqJExllvZDg&usqp=CAU"
                     class="img text-center " alt="...">
                     <h5 class="card-title text-center ">Nombre del usuario</h5> 
             </div>
-            
+          
             <p class="card-text  text-center"><small class="text-muted">Last updated 3 mins ago</small>
                                     
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2" fill="currentColor" xmlns="http://www.w3.org/200ssssss0/svg">
@@ -96,7 +104,8 @@
                     <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
             </svg>
             </p>
-            <h1>Titulo de la Noticia</h1>
+            <h1>Titulo de la Noticia</h1>  
+  
         </div>
         <hr>
         
@@ -120,23 +129,21 @@
             </h5>
             </p>
         </div>
-            <div class = "boton text-right">
-                <button type="button" div class="btn btn-danger">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                      </svg>  
-                    
-                </button>
-                <button type="button" class="btn btn-danger"> 
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                      </svg>
-                </button>
-            </div>
+
+                        <a href="#" class="" >
+                        <i class='fas fa-heart' style='font-size:24px'></i>
+                        </a>
+
+                        <a href="#" class="">
+                            <i class='far fa-heart' style='font-size:24px'></i>
+                        </a>
+            
+                        
+                
         </div>
     </div>
     
-        
+  
       
 
 <!-- Contenedor Principal -->
@@ -158,17 +165,13 @@
                         <h6 class="comment-name by-author"><a href="">Edson Lugo</a></h6>
                         <span>hace 20 minutos</span>  
                         <div class = "boton-corazon text-right">
-                            <button type="button" div class="btn btn-danger">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                  </svg>  
-                                
-                            </button>
-                            <button type="button" class="btn btn-info"> 
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-90deg-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
-                              </svg>
-                            </button>
+                            <a href="#" class="" >
+                                <i class='fas fa-heart' style='font-size:24px'></i>
+                                </a>
+                                <a href="#" class="" >
+                                    <i class='far fa-trash-alt' style='font-size:24px'></i>                                      
+                                  </a>
+                         
                         </div>
                     </div>
 
@@ -192,17 +195,11 @@
                             <h6 class="comment-name"><a href="">Rubí Alvarado</a></h6>
                             <span>hace 10 minutos   </span>
                             <div class = "boton text-right">
-                                <button type="button" div class="btn btn-danger">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                      </svg>  
-                                    
-                                </button>
-                                <button type="button" class="btn btn-info"> 
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-90deg-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
-                                  </svg>
-                                </button>
+                                <a href="#" class="" >
+                                    <i class='fas fa-heart' style='font-size:24px'></i>
+                                    </a>
+                                 
+                               
                             </div>
                         
 
@@ -223,17 +220,12 @@
                             <h6 class="comment-name by-author"><a href="">Edson Lugo</a></h6>
                             <span>hace 10 minutos     </span>
                             <div class = "boton-corazon text-right">
-                                <button type="button" div class="btn btn-danger">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                      </svg>  
-                                    
-                                </button>
-                                <button type="button" class="btn btn-info"> 
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-90deg-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
-                                  </svg>
-                                </button>
+                                <a href="#" class="" >
+                                    <i class='fas fa-heart' style='font-size:24px'></i>
+                                    </a>
+                                    <a href="#" class="" >
+                                        <i class='far fa-trash-alt' style='font-size:24px'></i>                                      
+                                      </a>
                             </div>
                          
                          
@@ -255,20 +247,13 @@
                     <div class="comment-head">
                         <h6 class="comment-name"><a href="">Rubí Alvarado</a></h6>
                         <span>hace 10 minutos   </span>
-                        <div class = "boton-corazon text-right">
-                            <button type="button" div class="btn btn-danger">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                  </svg>  
-                                
-                            </button>
-                            <button type="button" class="btn btn-info"> 
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-90deg-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
-                              </svg>
-                            </button>
-                        </div>
+
+                       
+                        <a href="#" class="" >
+                            <i class='fas fa-heart' style='font-size:24px'></i>
+                            </a>
                     </div>
+                   
                     <div class="comment-content">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
                     </div>
