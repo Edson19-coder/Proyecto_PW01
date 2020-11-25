@@ -66,6 +66,7 @@ body {
   background: #aa66cc;
   border: 1px solid #aa66cc;
   color: #fff;
+  border-radius:  #aa66cc;
   outline: none;
   border-radius: 0 .6em .6em 0;
   padding: .80em;
@@ -79,6 +80,7 @@ body {
 .profile-user-page .user-profile-data, .profile-user-page .description-profile {
   text-align: center;
   padding: 0 1.5em; 
+  
 }
 .profile-user-page .user-profile-data h1 {
   font-family: "Lato", sans-serif;
