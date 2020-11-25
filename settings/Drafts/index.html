@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drafts</title>
@@ -9,6 +9,8 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -19,12 +21,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
     <!--------------------------------------------------------- FIRST NAVBAR --------------------------------------------------------->
     <nav class="navbar navbar-expand-lg navbar-dark main-nav-bar" style="background-color: #aa66cc;">
-        <a href="" class="navbar-brand">CineNews</a>
+        <a href="" class="navbar-brand">CineNews
+            <i class="material-icons" style="font-size:18px;color:rgb(255, 255, 255)">movie_filter</i>
+        </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin-top: 6px;">
@@ -35,17 +45,20 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="#" class="dropdown-item">Login</a>
-                        <a href="#" class="dropdown-item">Register</a>
-                    </div>
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account
+                        
+                           <i class='far fa-user-circle' style='font-size:17px;color:rgba(255, 255, 255, 0.432)'></i>                        </a>
+                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               <a href="#" class="dropdown-item">Login</a>
+                             <a href="#" class="dropdown-item">Register</a>
+                        </div>
                 </li>
-            </ul>
+          </ul>
 
         </div>
     </nav>
+
     <!--------------------------------------------------------- SECOND NAVBAR --------------------------------------------------------->
     <nav class="navbar navbar-expand-lg navbar-light secondary-nav-bar sticky-top" style="background-color: white;">
 
@@ -75,23 +88,39 @@
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action">My settings</a>
-                <a href="#" class="list-group-item list-group-item-action">Saved news</a>
-                <a href="#" class="list-group-item list-group-item-action">Interactions</a>
-                <a href="#" class="list-group-item list-group-item-action">Warnings</a>
-                <a href="#" class="list-group-item list-group-item-action">Create news</a>
-                <a href="#" class="list-group-item list-group-item-action">Drafts</a>
-                <a href="#" class="list-group-item list-group-item-action">My posts</a>
-                <a href="#" class="list-group-item list-group-item-action">Reviews</a>
-            </div>
-        </div>
+          <div class="list-group list-group-flush">
+              <a href="#" class="list-group-item list-group-item-action">My settings
+                  <i class='fas fa-tools' style='font-size:18px;color: black'></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Saved news
+                  <i class='far fa-save' style='font-size:18px;color: black'></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Interactions
+                  <i class='far fa-hand-point-up' style='font-size:18px;color: black'></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Warnings
+                  <i class='fas fa-exclamation-triangle' style='font-size:18px;color: black'></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Create news
+                  <i class='far fa-edit' style='font-size:18px;color: black'></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Drafts
+                  <i class='fas fa-pencil-alt' style='font-size:18px;color: black'></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">My posts
+                  <i class='far fa-folder-open' style='font-size:18px;color: black'></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Reviews
+                  <i class='far fa-eye' style='font-size:18px;color: black'></i>
+              </a>
+          </div>
+      </div>
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">Menu</button>
-            </nav>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" >
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Menu</button>
+        </nav>
         <main role="main">
 
          
@@ -109,9 +138,11 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                               <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+
                               </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
+                          <small class="text-muted">Last updated 3 mins ago                             <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+                          </small>
                         </div>
                       </div>
                     </div>
@@ -125,9 +156,30 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+                           </div>
+                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                           
+                            <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+
+                           </p>                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <img src="http://es.web.img2.acsta.net/r_640_360/newsv7/20/09/25/15/18/0240144.jpg"
+                    class="card-img" alt="...">
+                    <div class="card mb-4 shadow-sm">
+                      <div class="card-body">
+                        <h5 class="card-title">Titulo de la Noticia</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                                               <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+
                               </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
+                          <small class="text-muted">Last updated 3 mins ago                             <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+                          </small>
                         </div>
                       </div>
                     </div>
@@ -141,9 +193,30 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+                           </div>
+                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                           
+                            <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+
+                           </p>                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <img src="http://es.web.img2.acsta.net/r_640_360/newsv7/20/09/25/15/18/0240144.jpg"
+                    class="card-img" alt="...">
+                    <div class="card mb-4 shadow-sm">
+                      <div class="card-body">
+                        <h5 class="card-title">Titulo de la Noticia</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                                               <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+
                               </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
+                          <small class="text-muted">Last updated 3 mins ago                             <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+                          </small>
                         </div>
                       </div>
                     </div>
@@ -157,9 +230,30 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+                           </div>
+                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                           
+                            <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+
+                           </p>                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <img src="http://es.web.img2.acsta.net/r_640_360/newsv7/20/09/25/15/18/0240144.jpg"
+                    class="card-img" alt="...">
+                    <div class="card mb-4 shadow-sm">
+                      <div class="card-body">
+                        <h5 class="card-title">Titulo de la Noticia</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                                               <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+
                               </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
+                          <small class="text-muted">Last updated 3 mins ago                             <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+                          </small>
                         </div>
                       </div>
                     </div>
@@ -173,10 +267,13 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                              </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+                           </div>
+                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                           
+                            <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+
+                           </p>                        </div>
                       </div>
                     </div>
                   </div>
@@ -189,65 +286,30 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                               <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+
                               </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <img src="http://es.web.img2.acsta.net/r_640_360/newsv7/20/09/25/15/18/0240144.jpg"
-                    class="card-img" alt="...">
-                    <div class="card mb-4 shadow-sm">
-                      <div class="card-body">
-                        <h5 class="card-title">Titulo de la Noticia</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                              </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <img src="http://es.web.img2.acsta.net/r_640_360/newsv7/20/09/25/15/18/0240144.jpg"
-                    class="card-img" alt="...">
-                    <div class="card mb-4 shadow-sm">
-                      <div class="card-body">
-                        <h5 class="card-title">Titulo de la Noticia</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                              </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <img src="http://es.web.img2.acsta.net/r_640_360/newsv7/20/09/25/15/18/0240144.jpg"
-                    class="card-img" alt="...">
-                    <div class="card mb-4 shadow-sm">
-                      <div class="card-body">
-                        <h5 class="card-title">Titulo de la Noticia</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                              </div>
-                          <small class="text-muted">Last updated 3 mins ago</small>
+                          <small class="text-muted">Last updated 3 mins ago                             <i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
+                          </small>
                         </div>
                       </div>
                     </div>
                   </div>
                   
+                 
+                  
                 </div>
               </div>
             </div>
+
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+              <p class="mb-1">&copy; 2020 CineNews</p>
+              <ul class="list-inline">
+            <!---    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Support</a>
+              
+              </li>-->
             <footer class="text-muted">
                 <div class="container">
                   <p class="float-right">
