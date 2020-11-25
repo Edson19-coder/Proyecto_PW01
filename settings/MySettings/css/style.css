@@ -91,3 +91,9 @@
 input[type="text"],[type="password"],[type="email"]{
   width: 300px;
 }
+
+.btnG
+{
+ float: right;
+  
+}
