@@ -20,7 +20,23 @@ public class NewsModel {
     private int newsStatus;
     private String newDate;
     private String newsMotivo;
+    private int newsLikeCount;
+    private int newsDislikeCount;
 
+    public NewsModel(int idnews, String newsTitle, String newsDescription, String newsContent, int newsCategory, int newsAuthor, int newsStatus, String newDate, int newsLikeCount, int newsDislikeCount) {
+        this.idnews = idnews;
+        this.newsTitle = newsTitle;
+        this.newsDescription = newsDescription;
+        this.newsContent = newsContent;
+        this.newsCategory = newsCategory;
+        this.newsAuthor = newsAuthor;
+        this.newsStatus = newsStatus;
+        this.newDate = newDate;
+        this.newsMotivo = newsMotivo;
+        this.newsLikeCount = newsLikeCount;
+        this.newsDislikeCount = newsDislikeCount;
+    }
+    
     public NewsModel(int idnews, String newsTitle, String newsDescription, String newsContent, int newsCategory, int newsAuthor, int newsStatus, String newDate) {
         this.idnews = idnews;
         this.newsTitle = newsTitle;
@@ -31,7 +47,7 @@ public class NewsModel {
         this.newsStatus = newsStatus;
         this.newDate = newDate;
     }
-
+    
     public NewsModel(String newsTitle, String newsDescription, String newsContent, int newsCategory, int newsAuthor, int newsStatus, String newDate) {
         this.newsTitle = newsTitle;
         this.newsDescription = newsDescription;
@@ -127,4 +143,21 @@ public class NewsModel {
     public void setNewsMotivo(String newsMotivo) {
         this.newsMotivo = newsMotivo;
     }
+
+    public int getNewsLikeCount() {
+        return newsLikeCount;
+    }
+
+    public void setNewsLikeCount(int newsLikeCount) {
+        this.newsLikeCount = newsLikeCount;
+    }
+
+    public int getNewsDislikeCount() {
+        return newsDislikeCount;
+    }
+
+    public void setNewsDislikeCount(int newsDislikeCount) {
+        this.newsDislikeCount = newsDislikeCount;
+    }
+    
 }

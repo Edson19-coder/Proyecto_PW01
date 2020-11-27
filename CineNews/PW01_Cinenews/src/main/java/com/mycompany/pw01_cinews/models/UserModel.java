@@ -19,8 +19,9 @@ private Integer iduser;
     private String facebook;
     private String instragram;
     private String pathImage;
+    private String SobreMi;
 
-    public UserModel(Integer iduser, String user_name, String password, Integer user_type, String email, String facebook, String instragram, String pathImage) {
+    public UserModel(Integer iduser, String user_name, String password, Integer user_type, String email, String facebook, String instragram, String pathImage, String SobreMi) {
         this.iduser = iduser;
         this.user_name = user_name;
         this.password = password;
@@ -29,6 +30,18 @@ private Integer iduser;
         this.facebook = facebook;
         this.instragram = instragram;
         this.pathImage = pathImage;
+        this.SobreMi = SobreMi;
+    }
+
+    public UserModel(Integer iduser, String user_name, String password, String email, String facebook, String instragram, String pathImage, String SobreMi) {
+        this.iduser = iduser;
+        this.user_name = user_name;
+        this.password = password;
+        this.email = email;
+        this.facebook = facebook;
+        this.instragram = instragram;
+        this.pathImage = pathImage;
+        this.SobreMi = SobreMi;
     }
 
     public UserModel(Integer iduser, String user_name, String password, Integer user_type, String email) {
@@ -38,7 +51,7 @@ private Integer iduser;
         this.user_type = user_type;
         this.email = email;
     }
-
+    
     public UserModel(Integer iduser, String user_name, Integer user_type, String email) {
         this.iduser = iduser;
         this.user_name = user_name;
@@ -69,6 +82,7 @@ private Integer iduser;
     }
 
     public UserModel() {
+    
     }
 
     public UserModel(Integer iduser, String user_name, String password) {
@@ -77,9 +91,18 @@ private Integer iduser;
         this.password = password;
     }
 
+    public UserModel(Integer iduser, String user_name, Integer user_type, String email, String facebook, String instragram, String pathImage, String SobreMi) {
+        this.iduser = iduser;
+        this.user_name = user_name;
+        this.user_type = user_type;
+        this.email = email;
+        this.facebook = facebook;
+        this.instragram = instragram;
+        this.pathImage = pathImage;
+        this.SobreMi = SobreMi;
+    }
     
-
-    public Integer getIduser() {
+       public Integer getIduser() {
         return iduser;
     }
 
@@ -142,4 +165,13 @@ private Integer iduser;
     public void setPathImage(String pathImage) {
         this.pathImage = pathImage;
     }
+
+    public String getSobreMi() {
+        return SobreMi;
+    }
+
+    public void setSobreMi(String SobreMi) {
+        this.SobreMi = SobreMi;
+    }
+    
 }

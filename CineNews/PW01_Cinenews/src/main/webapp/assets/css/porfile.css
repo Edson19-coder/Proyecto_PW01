@@ -8,10 +8,7 @@ body {
   background: #f8f5f0;
   font-family: "Open sans", sans-serif;
 }
-a {
-  text-decoration: none;
-  color: #3498db;
-}
+
 .content-profile-page {
   margin: 1em auto;
   width: 44.23em;
@@ -66,22 +63,24 @@ a {
   font-weight: bold;
   cursor: pointer;
   width: 7em; 
-  background: #3498db;
-  border: 1px solid #2487c9;
+  background: #aa66cc;
+  border: 1px solid #aa66cc;
   color: #fff;
+  border-radius:  #aa66cc;
   outline: none;
   border-radius: 0 .6em .6em 0;
   padding: .80em;
 }
 
 .profile-user-page button:hover {
-  background: #51a7e0;
+  background:#aa66cc;
   transition: background .2s ease-in-out;
-  border: 1px solid #2487c9;
+  border: 1px solid #aa66cc;
 }
 .profile-user-page .user-profile-data, .profile-user-page .description-profile {
   text-align: center;
   padding: 0 1.5em; 
+  
 }
 .profile-user-page .user-profile-data h1 {
   font-family: "Lato", sans-serif;
@@ -145,15 +144,15 @@ a {
   font-size: 2em; 
 }
 .profile-user-page .data-user li a span {
-  color: #717a7e; 
+  color: #aa66cc; 
 }
 .profile-user-page .data-user li a:hover {
   background: rgba(0, 0, 0, 0.05);
-  border-bottom: .2em solid #3498db;
-  color: #3498db; 
+  border-bottom: .2em solid #aa66cc;
+  color:#aa66cc; 
 }
 .profile-user-page .data-user li a:hover span {
-  color: #3498db; 
+  color: #aa66cc; 
 }
 
 footer h4 {
@@ -168,4 +167,10 @@ footer h4 {
 footer h4 a {
   text-decoration: none;
   color: #3498db;
+}
+
+.far
+{
+  color:    #aa66cc;
+  
 }

@@ -79,4 +79,70 @@ public class CommentaryDAO {
         }
         return comments;
     }
+    
+    public static int DeleteCommentary(int idcom) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try {
+            String sql = "CALL `cinenews_db`.`commentary_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "D");
+            statement.setInt(2, idcom);
+            return statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public static int MasLikeCommentary(int idcom) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try {
+            String sql = "CALL `cinenews_db`.`commentary_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "L");
+            statement.setInt(2, idcom);
+            return statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public static int MenosLikeCommentary(int idcom) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try {
+            String sql = "CALL `cinenews_db`.`commentary_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "LD");
+            statement.setInt(2, idcom);
+            return statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
 }

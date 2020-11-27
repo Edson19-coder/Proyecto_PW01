@@ -76,4 +76,21 @@ public class TypeClass {
             }
         }
     }
+    
+    public static String GetStatusUser(int userStatus){
+        switch(userStatus){
+            case 0:{
+                return "Sin sancion";
+            }
+            case 1:{
+                return "Cuenta suspendida temporalmente";
+            }
+            case 2:{
+                return "Cuenta suspendida permanentemente";
+            }
+            default:{
+                return null;
+            }
+        }
+    }
 }

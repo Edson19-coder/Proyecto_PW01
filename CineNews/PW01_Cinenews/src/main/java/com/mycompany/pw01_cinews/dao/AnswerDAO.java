@@ -81,4 +81,92 @@ public class AnswerDAO {
         }
         return comments;
     }
+    
+    public static int DeletAnswer(int idans) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try {
+            String sql = "CALL `cinenews_db`.`answer_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "D");
+            statement.setInt(2, idans);
+            return statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public static int DeletAnswersByComment(int idcom) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try {
+            String sql = "CALL `cinenews_db`.`answer_procedure`(?, NULL, NULL, NULL, NULL, ?, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "DC");
+            statement.setInt(2, idcom);
+            return statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public static int MasLikeAnswer(int idans) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try {
+            String sql = "CALL `cinenews_db`.`answer_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "L");
+            statement.setInt(2, idans);
+            return statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public static int MenosLikeAnswer(int idans) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try {
+            String sql = "CALL `cinenews_db`.`answer_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "LD");
+            statement.setInt(2, idans);
+            return statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
 }

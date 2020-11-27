@@ -1,3 +1,7 @@
+<%@page import="com.mycompany.pw01_cinews.models.LikeDislikeNewsModel"%>
+<%@page import="com.mycompany.pw01_cinews.models.LikeAnswerModel"%>
+<%@page import="com.mycompany.pw01_cinews.models.LikeCommentaryModel"%>
+<%@page import="com.mycompany.pw01_cinews.models.FavoriteModel"%>
 <%@page import="com.mycompany.pw01_cinews.models.AnswerModel"%>
 <%@page import="com.mycompany.pw01_cinews.dao.UserDAO"%>
 <%@page import="com.mycompany.pw01_cinews.models.CommentaryModel"%>
@@ -12,6 +16,10 @@
     UserModel author = (UserModel) request.getAttribute("User");
     List<CommentaryModel> comments = (List<CommentaryModel>) request.getAttribute("Comments");
     List<AnswerModel> answers = (List<AnswerModel>) request.getAttribute("Answers");
+    Boolean isFavNew = (Boolean) request.getAttribute("isFavNew");
+    List<LikeCommentaryModel> likelist = (List<LikeCommentaryModel>) request.getAttribute("likeNews");
+    List<LikeAnswerModel> likelistAnswer = (List<LikeAnswerModel>) request.getAttribute("likeAnswerNews");
+    List<LikeDislikeNewsModel> listLikeDislike = (List<LikeDislikeNewsModel>) request.getAttribute("listLikeDislike");
 %>
 <jsp:include page="head.jsp">
     <jsp:param name="nameSecc" value="News"/>
@@ -30,14 +38,28 @@
         <hr>
             <div class="titulo text-center">
                 <div class="card-title  text-center">   
-                    <%if(author.getPathImage() != null){ %>
+                    <div class="bote text-right">
+                        <a href="#" class="">
+                            <i class='far fa-trash-alt' style='font-size:24px'></i>
+                        </a>
+                        <%if (isFavNew == false) {%>
+                        <a href="SaveNew?user=<%= (Integer) session.getAttribute("id_user_session")%>&news=<%= newSelect.getIdnews()%>&acc=add" class="">
+                            <i class='far fa-bookmark' style='font-size:24px'></i>
+                        </a>
+                        <%} else {%>
+                        <a href="SaveNew?user=<%= (Integer) session.getAttribute("id_user_session")%>&news=<%= newSelect.getIdnews()%>&acc=delete" class="">
+                            <i class='fas fa-bookmark' style='font-size:24px'></i>
+                        </a>
+                        <%}%>
+                    </div>
+                    <%if (author.getPathImage() != null) {%>
                     <img  src="<%= author.getPathImage()%>"
                           class="img text-center " alt="..."/>
-                    <%}else{ %>
+                    <%} else { %>
                     <img  src="https://www.softzone.es/app/uploads/2018/04/guest.png"
                           class="img text-center " alt="..."/>
                     <%}%>
-                        <a href="Porfile?user=<%= author.getIduser() %>" style="text-decoration: none; color: black;"><h5 class="card-title text-center "><%=author.getUser_name()%></h5></a>
+                    <a href="Porfile?user=<%= author.getIduser()%>" style="text-decoration: none; color: black;"><h5 class="card-title text-center "><%=author.getUser_name()%></h5></a>
                 </div>
 
                 <p class="card-text  text-center"><small class="text-muted"><%=newSelect.getNewDate()%></small>
@@ -51,59 +73,95 @@
             </div>
             <hr>
 
-                <div class="contenido-notica text-center">
+
+                <div class=" corto">
                     <p><%=newSelect.getNewsDescription()%></p>
+                </div>
 
-                    <!--------------------------------------------------------- CAROUSEL --------------------------------------------------------->
-                    <div id="carouselCaptionid" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselCaptionid" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselCaptionid" data-slide-to="1"></li>
-                            <li data-target="#carouselCaptionid" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <%
-                                int i = 0;
-                                for (MediaModel media : medias) {
-                                    if (i == 0) {
-                                        i++;
-                            %>
-                            <div class="carousel-item active">
-                                <img src="<%= media.getMediaUrl()%>"
-                                     class="d-block w-100" alt="...">
-                            </div>
-                            <%} else {%>
-                            <div class="carousel-item">
-                                <img src="<%= media.getMediaUrl()%>"
-                                     class="d-block w-100" alt="...">
-                            </div>
-                            <%}
-                                }%>
+                <!--------------------------------------------------------- CAROUSEL --------------------------------------------------------->
+                <div id="carouselCaptionid" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselCaptionid" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselCaptionid" data-slide-to="1"></li>
+                        <li data-target="#carouselCaptionid" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <%
+                            int i = 0;
+                            for (MediaModel media : medias) {
+                                if (i == 0) {
+                                    i++;
+                        %>
+                        <div class="carousel-item active">
+                            <img src="<%= media.getMediaUrl()%>"
+                                 class="d-block w-100" alt="...">
                         </div>
-                        <a class="carousel-control-prev" href="#carouselCaptionid" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselCaptionid" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                        <%} else {%>
+                        <div class="carousel-item">
+                            <img src="<%= media.getMediaUrl()%>"
+                                 class="d-block w-100" alt="...">
+                        </div>
+                        <%}
+                            }%>
                     </div>
+                    <a class="carousel-control-prev" href="#carouselCaptionid" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselCaptionid" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
 
-                    <p><%=newSelect.getNewsContent()%></p>
-                    <div class = "boton text-right">
-                        <button type="button" div class="btn btn-danger">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                            </svg>  
-
-                        </button>
-                        <button type="button" class="btn btn-danger"> 
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                            </svg>
-                        </button>
-                    </div>
+                <div class=" descrip">
+                    <p>
+                        <h5><%=newSelect.getNewsContent()%></h5>
+                    </p>
+                </div>
+                <div>
+                    <% if (listLikeDislike.isEmpty() != true) {
+                            int isLike = 0;
+                            for (LikeDislikeNewsModel like : listLikeDislike) {
+                                if (like.getPlikedislikenewsIdUser() == (Integer) session.getAttribute("id_user_session") && (like.getPlikedislikenewsType() == 1) && (like.getPlikedislikenewsIdNew() == newSelect.getIdnews())) {
+                                    isLike = 1;
+                    %>
+                    <a href="LikesNew?acc=likeNew&not=<%= newSelect.getIdnews()%>" class=""  >
+                        <i class='fas fa-heart' style='font-size:24px; padding: 5px; color: red;'><%= newSelect.getNewsLikeCount()%></i>
+                    </a>
+                    <%}
+                        }
+                        if (isLike == 0) {%>
+                    <a href="LikesNew?acc=likeNew&not=<%= newSelect.getIdnews()%>" class="">
+                        <i class='fas fa-heart' style='font-size:24px; padding: 5px;'><%= newSelect.getNewsLikeCount()%></i>
+                    </a>
+                    <%}
+                    } else {%>
+                    <a href="LikesNew?acc=likeNew&not=<%= newSelect.getIdnews()%>" class="">
+                        <i class='fas fa-heart' style='font-size:24px; padding: 5px;'><%= newSelect.getNewsLikeCount()%></i>
+                    </a>
+                    <%}%>
+                    <% if (listLikeDislike.isEmpty() != true) {
+                            int isLike = 0;
+                            for (LikeDislikeNewsModel like : listLikeDislike) {
+                                if (like.getPlikedislikenewsIdUser() == (Integer) session.getAttribute("id_user_session") && (like.getPlikedislikenewsType() == 2) && (like.getPlikedislikenewsIdNew() == newSelect.getIdnews())) {
+                                    isLike = 1;
+                    %>
+                    <a href="LikesNew?acc=dislikeNew&not=<%= newSelect.getIdnews()%>" class=""  >
+                        <i class='fas fa-heart-broken' style='font-size:24px; padding: 5px; color: red;'><%= newSelect.getNewsDislikeCount()%></i>
+                    </a>
+                    <%}
+                        }
+                        if (isLike == 0) {%>
+                    <a href="LikesNew?acc=dislikeNew&not=<%= newSelect.getIdnews()%>" class="">
+                        <i class='fas fa-heart-broken' style='font-size:24px; padding: 5px;'><%= newSelect.getNewsDislikeCount()%></i>
+                    </a>
+                    <%}
+                    } else {%>
+                    <a href="LikesNew?acc=dislikeNew&not=<%= newSelect.getIdnews()%>" class="">
+                        <i class='fas fa-heart-broken' style='font-size:24px; padding: 5px;'><%= newSelect.getNewsDislikeCount()%></i>
+                    </a>
+                    <%}%>
                 </div>
                 </div>
 
@@ -132,14 +190,62 @@
                                     <!-- Contenedor del Comentario -->
                                     <div class="comment-box">
                                         <div class="comment-head">
-                                            <h6 class="comment-name by-author"><a href="Porfile?user=<%= comUser.getIduser() %>"><%= comUser.getUser_name()%></a></h6>
+                                            <h6 class="comment-name by-author"><a href="Porfile?user=<%= comUser.getIduser()%>"><%= comUser.getUser_name()%></a></h6>
                                             <span><%= commentary.getCommentaryDate()%></span>  
-                                            <div class = "boton-corazon text-right">
-                                                <button type="submit" div class="btn btn-danger" name="heart">
-                                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                                    </svg>  
-                                                </button>
+                                            <div class="boton-corazon text-right">
+                                                <% if (likelist.isEmpty() != true) {
+                                                        int isLike = 0;
+                                                        for (LikeCommentaryModel like : likelist) {
+                                                            if ((like.getPlikecommentsCommentary() == commentary.getIdcommentary()) && ((Integer) session.getAttribute("id_user_session") == like.getPlikecommentsUser())) {
+                                                                isLike = 1;
+                                                %>
+                                                <a href="Commentary?comid=<%= commentary.getIdcommentary()%>&acc=deleteLike&not=<%= newSelect.getIdnews()%>&likeid=<%= like.getPidlikecomments()%>" class="">
+                                                    <i class='fas fa-heart' style='font-size:24px'><%= commentary.getCommentaryCountLikes()%></i>
+                                                </a>
+                                                <%}
+                                                    }
+                                                    if (isLike == 0) {%>
+                                                <a href="Commentary?comid=<%= commentary.getIdcommentary()%>&acc=likeCom&not=<%= newSelect.getIdnews()%>" class="">
+                                                    <i class='far fa-heart' style='font-size:24px'><%= commentary.getCommentaryCountLikes()%></i>
+                                                </a>
+                                                <%}
+                                                } else {%>
+                                                <a href="Commentary?comid=<%= commentary.getIdcommentary()%>&acc=likeCom&not=<%= newSelect.getIdnews()%>" class="">
+                                                    <i class='far fa-heart' style='font-size:24px'><%= commentary.getCommentaryCountLikes()%></i>
+                                                </a>
+                                                <%}%>
+                                                <a data-toggle="modal" data-target="#exampleModal" class=""> 
+                                                    <i class='far fa-trash-alt' style='font-size:24px'></i>
+                                                </a>
+                                            </div>
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Sanción</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form method="" action=""> <%--  --%>
+                                                                <p>Si no quiere sancionar al usuario solo cierre esta ventana</p>
+                                                                <div class="form-group" >
+                                                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                                                    <input type="text" class="form-control" id="recipient-name">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="message-text" class="col-form-label">Message:</label>
+                                                                    <textarea class="form-control" id="message-text"></textarea>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="Commentary?comid=<%= commentary.getIdcommentary()%>&acc=deleteCom&not=<%= newSelect.getIdnews()%>" class="btn btn-secondary" >Close</a>
+                                                            <a type="button" class="btn btn-primary">Send message</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="comment-content"><%= commentary.getCommentaryContent()%></div>
@@ -148,51 +254,68 @@
                             </form>
                             <!-- Respuestas de los comentarios -->
                             <%for (AnswerModel answer : answers) {
-                                if (answers != null && answer.getAnswerCommentary() == commentary.getIdcommentary()) {%>
+                                    if (answers != null && answer.getAnswerCommentary() == commentary.getIdcommentary()) {%>
                             <ul class="comments-list reply-list">
                                 <% UserModel ansUser = UserDAO.UserSelectById(answer.getAnswerUser());%>
                                 <li>
                                     <!-- Avatar -->
                                     <% String pic2 = ansUser.getPathImage();
                                         if (pic2 != null) {%>
-                                    <div class="comment-avatar"><img src="<%= pic%>" alt=""></div>
+                                    <div class="comment-avatar"><img src="<%= pic2%>" alt=""></div>
                                     <%} else {%>
                                     <div class="comment-avatar"><img src="https://www.softzone.es/app/uploads/2018/04/guest.png" alt=""></div>    
                                     <%}%>
                                     <!-- Contenedor del Comentario -->
                                     <div class="comment-box">
                                         <div class="comment-head">
-                                            <h6 class="comment-name"><a href="Porfile?user=<%= ansUser.getIduser() %>"><%= ansUser.getUser_name()%></a></h6>
+                                            <h6 class="comment-name"><a href="Porfile?user=<%= ansUser.getIduser()%>"><%= ansUser.getUser_name()%></a></h6>
                                             <span><%=answer.getAnswerDate()%>   </span>
-                                            <div class = "boton text-right">
-                                                <button type="button" div class="btn btn-danger">
-                                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                                    </svg>  
-
-                                                </button>
+                                            <div class="boton text-right">
+                                                <% if (likelistAnswer.isEmpty() != true) {
+                                                        int isLike = 0;
+                                                        for (LikeAnswerModel like : likelistAnswer) {
+                                                            if ((like.getLikeanswerAnswer() == answer.getIdanswer()) && ((Integer) session.getAttribute("id_user_session") == like.getLikeanswerUser())) {
+                                                                isLike = 1;
+                                                %>
+                                                <a href="Commentary?ansid=<%= answer.getIdanswer()%>&acc=deleteLikeAns&not=<%= newSelect.getIdnews()%>&likeid=<%= like.getIdlikeanswer()%>" class="">
+                                                    <i class='fas fa-heart' style='font-size:24px'><%= answer.getAnswerCountLike()%></i>
+                                                </a>
+                                                <%}
+                                                    }
+                                                    if (isLike == 0) {%>
+                                                <a href="Commentary?ansid=<%= answer.getIdanswer()%>&acc=likeAns&not=<%= newSelect.getIdnews()%>" class="">
+                                                    <i class='far fa-heart' style='font-size:24px'><%= answer.getAnswerCountLike()%></i>
+                                                </a>
+                                                <%}
+                                                } else {%>
+                                                <a href="Commentary?ansid=<%= answer.getIdanswer()%>&acc=likeAns&not=<%= newSelect.getIdnews()%>" class="">
+                                                    <i class='far fa-heart' style='font-size:24px'><%= answer.getAnswerCountLike()%></i>
+                                                </a>
+                                                <%}%>
+                                                <a href="Commentary?ansid=<%= answer.getIdanswer()%>&acc=deleteAns&not=<%= newSelect.getIdnews()%>" class="">
+                                                    <i class='far fa-trash-alt' style='font-size:24px'></i>
+                                                </a>
                                             </div>
-
-
-
                                         </div>
                                         <div class="comment-content"><%=answer.getAnswerContent()%></div>
                                     </div>
                                 </li>
                             </ul>
-                            <%}}%>
+                            <%}
+                                }%>
                         </li>
-                            <form method="POST" action="./ViewNew">
-                                <div class="form-group">
-                                    <textarea name="content" id="description" class="form-control" style="margin-top: 5px;" ></textarea>
-                                    <div class="text-right">
-                                        <input name="comentario" type="text" value="<%= commentary.getIdcommentary()%>" style="display: none;" />
-                                        <button id="btn-comment" type="submit" class="btn btn-primary" name="accion" value="Responder" style="margin-top: 5px;">Responder</button>
-                                    </div>
+                        <form method="POST" action="./ViewNew">
+                            <div class="form-group comment-box" style="margin-top: -30px" >
+                                <textarea name="content" id="description" class="form-control" style="margin-top: 5px;" ></textarea>
+                                <div class="text-right">
+                                    <input name="comentario" type="text" value="<%= commentary.getIdcommentary()%>" style="display: none;" />
+                                    <button id="btn-comment" type="submit" class="btn btn-primary" name="accion" value="Responder" style="margin-top: 5px;">Responder</button>
                                 </div>
-                            </form>
+                            </div>
+                        </form>
                     </ul> 
-                    <%}}%>
+                    <%}
+                        }%>
 
                     <form method="POST" action="./ViewNew">
                         <div class="form-group">
@@ -211,7 +334,6 @@
                         </p>
                     </div>
                 </footer> 
-
 
                 </body>
                 </html>

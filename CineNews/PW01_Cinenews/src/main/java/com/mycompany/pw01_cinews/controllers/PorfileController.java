@@ -5,9 +5,11 @@
  */
 package com.mycompany.pw01_cinews.controllers;
 
+import com.mycompany.pw01_cinews.dao.FavoriteNewsDAO;
 import com.mycompany.pw01_cinews.dao.MediaDAO;
 import com.mycompany.pw01_cinews.dao.NewsDAO;
 import com.mycompany.pw01_cinews.dao.UserDAO;
+import com.mycompany.pw01_cinews.models.FavoriteModel;
 import com.mycompany.pw01_cinews.models.MediaModel;
 import com.mycompany.pw01_cinews.models.NewsModel;
 import com.mycompany.pw01_cinews.models.UserModel;
@@ -48,10 +50,11 @@ public class PorfileController extends HttpServlet {
             UserModel userPorfileSelect = UserDAO.UserSelectById(id);
             List<NewsModel> newsByUser = NewsDAO.GetNewsByIdUser(id);
             List<MediaModel> media = MediaDAO.GetMedia();
-            //NewsModel newsByFavUser =
+            List<FavoriteModel> favList = FavoriteNewsDAO.GetFavNewsByUser(id);
             request.setAttribute("UserPorfile", userPorfileSelect);
             request.setAttribute("NewsUser", newsByUser);
             request.setAttribute("Medias", media);
+            request.setAttribute("FavList", favList);
             request.getRequestDispatcher("myporfile.jsp").forward(request,response);
         } catch (SQLException ex) {
             Logger.getLogger(PorfileController.class.getName()).log(Level.SEVERE, null, ex);

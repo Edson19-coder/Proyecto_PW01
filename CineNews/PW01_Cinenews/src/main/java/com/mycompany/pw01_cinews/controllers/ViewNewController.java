@@ -7,11 +7,19 @@ package com.mycompany.pw01_cinews.controllers;
 
 import com.mycompany.pw01_cinews.dao.AnswerDAO;
 import com.mycompany.pw01_cinews.dao.CommentaryDAO;
+import com.mycompany.pw01_cinews.dao.FavoriteNewsDAO;
+import com.mycompany.pw01_cinews.dao.LikeAnswerDAO;
+import com.mycompany.pw01_cinews.dao.LikeCommentaryDAO;
+import com.mycompany.pw01_cinews.dao.LikeDislikesNewsDAO;
 import com.mycompany.pw01_cinews.dao.MediaDAO;
 import com.mycompany.pw01_cinews.dao.NewsDAO;
 import com.mycompany.pw01_cinews.dao.UserDAO;
 import com.mycompany.pw01_cinews.models.AnswerModel;
 import com.mycompany.pw01_cinews.models.CommentaryModel;
+import com.mycompany.pw01_cinews.models.FavoriteModel;
+import com.mycompany.pw01_cinews.models.LikeAnswerModel;
+import com.mycompany.pw01_cinews.models.LikeCommentaryModel;
+import com.mycompany.pw01_cinews.models.LikeDislikeNewsModel;
 import com.mycompany.pw01_cinews.models.MediaModel;
 import com.mycompany.pw01_cinews.models.NewsModel;
 import com.mycompany.pw01_cinews.models.UserModel;
@@ -39,6 +47,7 @@ public class ViewNewController extends HttpServlet {
     List<MediaModel> media = null;
     List<CommentaryModel> comments = null;
     List<AnswerModel> answers = null;
+    Boolean isFavNew = null;
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -52,6 +61,7 @@ public class ViewNewController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            HttpSession session = request.getSession();
             String id = request.getParameter("Noticia");
             idu = Integer.parseInt(id);
             news = NewsDAO.GetNewsById(idu);
@@ -59,6 +69,14 @@ public class ViewNewController extends HttpServlet {
             author = UserDAO.UserSelectById(news.getNewsAuthor());
             comments = CommentaryDAO.SelectCommentsNews(idu);
             answers = AnswerDAO.SelectAnswerNews(idu);
+            isFavNew = FavoriteNewsDAO.IsFavNew(idu, (Integer) session.getAttribute("id_user_session"));
+            List<LikeCommentaryModel> likeNews = LikeCommentaryDAO.GetLikesByNew(idu);
+            List<LikeAnswerModel> likeAnswerNews = LikeAnswerDAO.GetLikesAnswerByNew(idu);
+            List<LikeDislikeNewsModel> listLikeDislike = LikeDislikesNewsDAO.GetLikesByNew(idu);
+            request.setAttribute("listLikeDislike", listLikeDislike);
+            request.setAttribute("likeAnswerNews", likeAnswerNews);
+            request.setAttribute("likeNews", likeNews);
+            request.setAttribute("isFavNew", isFavNew);
             request.setAttribute("News", news);
             request.setAttribute("Medias", media);
             request.setAttribute("User", author);
@@ -123,6 +141,7 @@ public class ViewNewController extends HttpServlet {
                 break;
             }
         }
+        request.setAttribute("isFavNew", isFavNew);
         request.setAttribute("Answers", answers);
         request.setAttribute("News", news);
         request.setAttribute("Medias", media);

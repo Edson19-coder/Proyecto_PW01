@@ -1,4 +1,52 @@
-.refnews , .refnews:hover{
-    text-decoration: none;
-    color: black;
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-position: 0px 0px;
+  min-width: 600px;
+  max-width: 1920px;
+
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.494);
+  border-radius: 20px;
+}
+
+#carouselCaptionid {
+  margin: 0 auto;
+  max-width: 900px !important;
+  max-height: auto !important;
+}
+
+
+
+.recent-news {
+  text-align: justify;
+}
+
+.comentar-news {  
+  text-align: right;
+ 
+}
+
+.body-card {
+  max-width: 1140px;
+}
+
+.body-cardEncapsula {
+  max-width: 1140px;
+  background-color: rgba(255, 255, 255, 0.623);
+}
+
+
+.img
+{
+  width: 50px;
+  height: 50px;
+}
+
+.far
+{
+  color:  #aa66cc;
 }

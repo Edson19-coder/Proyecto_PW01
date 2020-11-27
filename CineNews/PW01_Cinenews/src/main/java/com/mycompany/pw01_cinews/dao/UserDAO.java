@@ -109,8 +109,12 @@ public class UserDAO {
                 String password = result.getString("userPassword");
                 Integer userType = Integer.parseInt(result.getString("userType"));
                 String email = result.getString("userEmail");
+                String facebook = result.getString("userFacebook");
+                String instagram = result.getString("userInstagram");
+                String pathImage = result.getString("pathImage");
+                String description = result.getString("userDescription");
                 // Agregamos el usuario a la lista
-                users.add(new UserModel(id, name, password, userType, email));
+                users.add(new UserModel(id, name, password, userType, email, facebook, instagram, pathImage, description));
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -194,7 +198,8 @@ public class UserDAO {
                 String facebook = result.getString("userFacebook");
                 String instagram = result.getString("userInstagram");
                 String pathImage = result.getString("pathImage");
-                return new UserModel(id, name, userType, email, facebook, instagram, pathImage);
+                String userDescription = result.getString("userDescription");
+                return new UserModel(id, name, userType, email, facebook, instagram, pathImage, userDescription);
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -209,4 +214,41 @@ public class UserDAO {
         }
         return null;
     }
+     
+     public static int UserUpdate(UserModel user) throws SQLException{
+            Connection con = DbConnection.getConnection();
+         try{
+             String sql = "CALL `cinenews_db`.`alter_user`(?, ?, ?, ?, NULL, ?, ?, ?, ?, ?);";
+             CallableStatement statement = con.prepareCall(sql);
+             statement.setString(1, "U");
+            statement.setInt(2, user.getIduser());
+            statement.setString(3, user.getUser_name());
+            statement.setString(4, user.getPassword());
+            statement.setString(5, user.getEmail());
+            if(!"".equals(user.getFacebook())){
+                statement.setString(6, user.getFacebook());
+            }else{
+                statement.setString(6, null);
+            }
+            if(!"".equals(user.getFacebook())){
+                statement.setString(7, user.getInstragram());
+            }else{
+                statement.setString(7, null);
+            }
+            statement.setString(8, user.getPathImage());
+            statement.setString(9, user.getSobreMi());
+            return statement.executeUpdate();
+         }catch(SQLException ex){
+             System.out.println(ex.getMessage());
+         }finally{
+            if(con != null){
+                try{
+                    con.close();
+                } catch(SQLException ex){
+                    System.out.println(ex);
+                }
+            }
+        }
+         return 0;
+     }
 }

@@ -85,6 +85,7 @@ public class LoginController extends HttpServlet {
                         session.setAttribute("image_user_session", element.getPathImage());
                         session.setAttribute("facebook_user_session", element.getFacebook());
                         session.setAttribute("instagram_user_session", element.getInstragram());
+                        session.setAttribute("descripcion_user_session", element.getSobreMi());
                     }
                     request.setAttribute("message_type", "Aviso");
                     request.setAttribute("message", "Ingresaste a tu cuenta");

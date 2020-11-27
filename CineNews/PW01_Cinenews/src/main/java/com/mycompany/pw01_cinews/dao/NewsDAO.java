@@ -23,7 +23,7 @@ public class NewsDAO {
     public static int InsertNews(NewsModel news) throws SQLException{
         Connection con = DbConnection.getConnection();
         try{
-            String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL);";
             CallableStatement statement = con.prepareCall(sql);
             statement.setString(1, "I");
             statement.setString(2, news.getNewsTitle());
@@ -52,7 +52,7 @@ public class NewsDAO {
      public static int GetLastId() throws SQLException{
          Connection con = DbConnection.getConnection();
         try{
-            String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
+            String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
             CallableStatement statement = con.prepareCall(sql);
             statement.setString(1, "UI");
             ResultSet result = statement.executeQuery();
@@ -78,7 +78,7 @@ public class NewsDAO {
         List<NewsModel> news = new ArrayList<>();
         Connection con = DbConnection.getConnection();
         try {
-        String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
+        String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
             CallableStatement statement = con.prepareCall(sql);
             statement.setString(1, "AS");
             ResultSet result = statement.executeQuery();
@@ -110,7 +110,7 @@ public class NewsDAO {
     public static NewsModel GetNewsById(int idn) throws SQLException{
         Connection con = DbConnection.getConnection();
         try {
-            String sql = "CALL `cinenews_db`.`news_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
+            String sql = "CALL `cinenews_db`.`news_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
             CallableStatement statement = con.prepareCall(sql);
             statement.setString(1, "S");
             statement.setInt(2, idn);
@@ -124,7 +124,9 @@ public class NewsDAO {
                 Integer Author = result.getInt("newAuthor");
                 Integer Status = result.getInt("newStatus");
                 String Date = result.getString("newDate");
-                NewsModel nm = new NewsModel(id, title, Description, Content, Category, Author, Status, Date);
+                Integer LikeCount = result.getInt("newsLikeCount");
+                Integer DislikeCount = result.getInt("newsDislikeCount");
+                NewsModel nm = new NewsModel(id, title, Description, Content, Category, Author, Status, Date, LikeCount, DislikeCount);
                 return nm;
             }
         } catch (SQLException ex) {
@@ -145,7 +147,7 @@ public class NewsDAO {
         List<NewsModel> news = new ArrayList<>();
         Connection con = DbConnection.getConnection();
         try {
-        String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, NULL, NULL,	NULL, NULL, ?, NULL, NULL, NULL);";
+        String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, NULL, NULL,	NULL, NULL, ?, NULL, NULL, NULL, NULL, NULL);";
             CallableStatement statement = con.prepareCall(sql);
             statement.setString(1, "US");
             statement.setInt(2, idu);
@@ -179,12 +181,34 @@ public class NewsDAO {
     public static int UpdateStatus(Integer idNews, String comentario, Integer status) throws SQLException{
         Connection con = DbConnection.getConnection();
         try{
-            String sql = "CALL `cinenews_db`.`news_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL, ?, NULL,?);";
+            String sql = "CALL `cinenews_db`.`news_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL, ?, NULL,?, NULL, NULL);";
             CallableStatement statement = con.prepareCall(sql);
             statement.setString(1, "ST");
             statement.setInt(2, idNews);
             statement.setInt(3, status);
             statement.setString(4, comentario);
+            return statement.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }finally{
+            if(con != null){
+                try{
+                    con.close();
+                } catch(SQLException ex){
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public static int LikeInteraction(String op, Integer idNews) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try{
+            String sql = "CALL `cinenews_db`.`news_procedure`(?, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, op);
+            statement.setInt(2, idNews);
             return statement.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());

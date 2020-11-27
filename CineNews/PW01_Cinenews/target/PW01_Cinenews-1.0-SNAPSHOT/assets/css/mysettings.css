@@ -74,18 +74,12 @@
 
 .change-photo-id{
   position: absolute;
-  bottom: 330px; 
+  top: 130px;
+  bottom: 200px; 
   left: 90px; 
   color: black;
   opacity: 0%;
   transition: .5s;
-}
-
-.user-img:hover > img{
-  filter: blur(1px);
-}
-.user-img:hover > h5{
-  opacity: 100%;
 }
 
 input[type="text"],[type="password"],[type="email"]{

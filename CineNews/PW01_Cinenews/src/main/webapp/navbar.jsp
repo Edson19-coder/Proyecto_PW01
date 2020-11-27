@@ -4,7 +4,9 @@
     <script src="assets/js/verPerfil.js"></script>
     <nav class="navbar navbar-expand-lg navbar-dark main-nav-bar" style="background-color: #aa66cc;">
         <%String us = request.getParameter("userSession");%>
-        <a href="Home" class="navbar-brand">CineNews</a>
+        <a href="Home" class="navbar-brand">CineNews
+            <i class="material-icons" style="font-size:18px;color:rgb(255, 255, 255)">movie_filter</i>
+        </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin-top: 6px;">
@@ -17,7 +19,7 @@
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                        <%if(us == null){%>
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account <i class='far fa-user-circle' style='font-size:17px;color:rgba(255, 255, 255, 0.432)'></i>  </a>
                         <%}else{%>
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= us %></a>
                         <%}%>
