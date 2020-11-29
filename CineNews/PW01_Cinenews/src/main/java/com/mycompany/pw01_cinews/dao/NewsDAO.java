@@ -223,4 +223,132 @@ public class NewsDAO {
         }
         return 0;
     }
+    
+    public static int UpdateNew(NewsModel news) throws SQLException{
+        Connection con = DbConnection.getConnection();
+        try{
+            String sql = "CALL `cinenews_db`.`news_procedure`( ?, ?, ?, ?, ?, ?, NULL, ?, ?, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "U");
+            statement.setInt(2, news.getIdnews());
+            statement.setString(3, news.getNewsTitle());
+            statement.setString(4, news.getNewsDescription());
+            statement.setString(5, news.getNewsContent());
+            statement.setInt(6, news.getNewsCategory());
+            statement.setInt(7, news.getNewsStatus());
+            statement.setString(8, news.getNewDate());
+            return statement.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }finally{
+            if(con != null){
+                try{
+                    con.close();
+                } catch(SQLException ex){
+                    System.out.println(ex);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public static List<NewsModel> GetNewsMostLiked() throws SQLException{
+        List<NewsModel> news = new ArrayList<>();
+        Connection con = DbConnection.getConnection();
+        try {
+        String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "TT");
+            ResultSet result = statement.executeQuery();
+            while     (result.next()) {
+                Integer id = result.getInt("idnews");
+                String title = result.getString("newsTitle");
+                String Description = result.getString("newsDescription");
+                String Content = result.getString("newsContent");
+                Integer Category = result.getInt("newsCategory");
+                Integer Author = result.getInt("newAuthor");
+                Integer Status = result.getInt("newStatus");
+                String Date = result.getString("newDate");
+                news.add(new NewsModel(id, title, Description, Content, Category, Author, Status, Date));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }finally{
+            if(con != null){
+                try{
+                    con.close();
+                } catch(SQLException ex){
+                    System.out.println(ex);
+                }
+            }
+        }
+        return news;
+    }
+    
+    public static List<NewsModel> GetNewsCategory(int category) throws SQLException{
+        List<NewsModel> news = new ArrayList<>();
+        Connection con = DbConnection.getConnection();
+        try {
+        String sql = "CALL `cinenews_db`.`news_procedure`(?, NULL, NULL, NULL, NULL, ?, NULL, NULL, NULL, NULL, NULL, NULL);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, "C");
+            statement.setInt(2, category);
+            ResultSet result = statement.executeQuery();
+            while     (result.next()) {
+                Integer id = result.getInt("idnews");
+                String title = result.getString("newsTitle");
+                String Description = result.getString("newsDescription");
+                String Content = result.getString("newsContent");
+                Integer Category = result.getInt("newsCategory");
+                Integer Author = result.getInt("newAuthor");
+                Integer Status = result.getInt("newStatus");
+                String Date = result.getString("newDate");
+                news.add(new NewsModel(id, title, Description, Content, Category, Author, Status, Date));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }finally{
+            if(con != null){
+                try{
+                    con.close();
+                } catch(SQLException ex){
+                    System.out.println(ex);
+                }
+            }
+        }
+        return news;
+    }
+    
+    public static List<NewsModel> GetNewsSearch(String texto) throws SQLException{
+        List<NewsModel> news = new ArrayList<>();
+        Connection con = DbConnection.getConnection();
+        try {
+        String sql = "CALL `cinenews_db`.`search_procedure`(?);";
+            CallableStatement statement = con.prepareCall(sql);
+            statement.setString(1, texto);
+            ResultSet result = statement.executeQuery();
+            while     (result.next()) {
+                Integer id = result.getInt("idnews");
+                String title = result.getString("newsTitle");
+                String Description = result.getString("newsDescription");
+                String Content = result.getString("newsContent");
+                Integer Category = result.getInt("newsCategory");
+                Integer Author = result.getInt("newAuthor");
+                Integer Status = result.getInt("newStatus");
+                String Date = result.getString("newDate");
+                news.add(new NewsModel(id, title, Description, Content, Category, Author, Status, Date));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }finally{
+            if(con != null){
+                try{
+                    con.close();
+                } catch(SQLException ex){
+                    System.out.println(ex);
+                }
+            }
+        }
+        return news;
+    }
 }

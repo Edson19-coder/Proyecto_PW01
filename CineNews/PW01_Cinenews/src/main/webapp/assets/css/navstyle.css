@@ -23,3 +23,7 @@
   color: #aa66cc !important;
 }
 
+.avatar-navbar{
+  max-height: 40px;
+  max-width: 40px;
+}

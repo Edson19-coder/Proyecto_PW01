@@ -89,7 +89,7 @@ public class LoginController extends HttpServlet {
                     }
                     request.setAttribute("message_type", "Aviso");
                     request.setAttribute("message", "Ingresaste a tu cuenta");
-                    request.getRequestDispatcher("home.jsp").forward(request, response);
+                    request.getRequestDispatcher("Home").forward(request, response);
                 }
                 else{
                     request.setAttribute("message_type", "Error");

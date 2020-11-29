@@ -49,7 +49,7 @@
                     <p class="card-text"><%= news.getNewsDescription()%></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</button>
+                            <a href="CreateNew?idNew=<%= news.getIdnews()%>&acc=editar" class="btn btn-sm btn-outline-secondary" id="menu-toggle" style = "background-color:  #aa66cc; border: #aa66cc; color: white;">Edit</a>
                         </div>
                         <small class="text-muted">Last updated <%= news.getNewDate()%><i class='far fa-calendar' style='font-size:18px; color: #aa66cc;'></i>
                         </small>

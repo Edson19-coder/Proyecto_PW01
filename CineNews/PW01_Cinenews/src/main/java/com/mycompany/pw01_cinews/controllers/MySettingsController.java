@@ -9,6 +9,7 @@ import com.mycompany.pw01_cinews.dao.UserDAO;
 import com.mycompany.pw01_cinews.models.UserModel;
 import com.mycompany.pw01_cinews.utils.FileUtils;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
@@ -71,8 +72,9 @@ public class MySettingsController extends HttpServlet {
                 String userInsta = request.getParameter("userInsta");
                 String userSobrMy = request.getParameter("content");
                 Part file = request.getPart("image");
+                InputStream inputStream = file.getInputStream();
                 String fullPath = null;
-                if (file != null) {
+                if (inputStream.available() != 0) {
                     String nameImage = file.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file.getContentType());
                     String path = request.getServletContext().getRealPath("");
                     fullPath = path + FileUtils.RUTE_USER_IMAGE + "/" + nameImage;
@@ -82,7 +84,12 @@ public class MySettingsController extends HttpServlet {
 
                 if ((userName != null && userEmail != null && userPass != null) && (!"".equals(userName) && !"".equals(userEmail) && !"".equals(userPass))) {
                     try {
-                        UserModel edit = new UserModel(iduser, userName, userPass, userEmail, userFace, userInsta, fullPath, userSobrMy);
+                        UserModel edit = null;
+                        if(inputStream.available() != 0){
+                            edit = new UserModel(iduser, userName, userPass, userEmail, userFace, userInsta, fullPath, userSobrMy);
+                        }else{
+                            edit = new UserModel(iduser, userName, userPass, userEmail, userFace, userInsta,(String) session.getAttribute("image_user_session"), userSobrMy);
+                        }
                         UserDAO.UserUpdate(edit);
                         UserModel user_login = new UserModel(edit.getUser_name(), edit.getPassword());
                         List<UserModel> user = UserDAO.SelectLoginUser(user_login);
@@ -93,7 +100,7 @@ public class MySettingsController extends HttpServlet {
                                 session.setAttribute("userType_user_session", element.getUser_type());
                                 session.setAttribute("email_user_session", element.getEmail());
                                 session.setAttribute("password_user_session", element.getPassword());
-                                if (file != null) {
+                                if (inputStream.available() != 0) {
                                 session.setAttribute("image_user_session", element.getPathImage());
                                 }
                                 session.setAttribute("facebook_user_session", element.getFacebook());

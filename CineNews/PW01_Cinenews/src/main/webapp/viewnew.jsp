@@ -16,7 +16,6 @@
     UserModel author = (UserModel) request.getAttribute("User");
     List<CommentaryModel> comments = (List<CommentaryModel>) request.getAttribute("Comments");
     List<AnswerModel> answers = (List<AnswerModel>) request.getAttribute("Answers");
-    Boolean isFavNew = (Boolean) request.getAttribute("isFavNew");
     List<LikeCommentaryModel> likelist = (List<LikeCommentaryModel>) request.getAttribute("likeNews");
     List<LikeAnswerModel> likelistAnswer = (List<LikeAnswerModel>) request.getAttribute("likeAnswerNews");
     List<LikeDislikeNewsModel> listLikeDislike = (List<LikeDislikeNewsModel>) request.getAttribute("listLikeDislike");
@@ -39,18 +38,17 @@
             <div class="titulo text-center">
                 <div class="card-title  text-center">   
                     <div class="bote text-right">
-                        <a href="#" class="">
-                            <i class='far fa-trash-alt' style='font-size:24px'></i>
-                        </a>
-                        <%if (isFavNew == false) {%>
+                        <%if (session.getAttribute("id_user_session") != null) {
+                            Boolean isFavNew = (Boolean) request.getAttribute("isFavNew");
+                            if (isFavNew == false) {%>
                         <a href="SaveNew?user=<%= (Integer) session.getAttribute("id_user_session")%>&news=<%= newSelect.getIdnews()%>&acc=add" class="">
                             <i class='far fa-bookmark' style='font-size:24px'></i>
                         </a>
-                        <%} else {%>
+                        <%} else if (isFavNew == true) {%>
                         <a href="SaveNew?user=<%= (Integer) session.getAttribute("id_user_session")%>&news=<%= newSelect.getIdnews()%>&acc=delete" class="">
                             <i class='fas fa-bookmark' style='font-size:24px'></i>
                         </a>
-                        <%}%>
+                        <%}}%>
                     </div>
                     <%if (author.getPathImage() != null) {%>
                     <img  src="<%= author.getPathImage()%>"
@@ -120,7 +118,8 @@
                     </p>
                 </div>
                 <div>
-                    <% if (listLikeDislike.isEmpty() != true) {
+                    <% if (session.getAttribute("id_user_session") != null){
+                        if (listLikeDislike.isEmpty() != true) {
                             int isLike = 0;
                             for (LikeDislikeNewsModel like : listLikeDislike) {
                                 if (like.getPlikedislikenewsIdUser() == (Integer) session.getAttribute("id_user_session") && (like.getPlikedislikenewsType() == 1) && (like.getPlikedislikenewsIdNew() == newSelect.getIdnews())) {
@@ -161,7 +160,7 @@
                     <a href="LikesNew?acc=dislikeNew&not=<%= newSelect.getIdnews()%>" class="">
                         <i class='fas fa-heart-broken' style='font-size:24px; padding: 5px;'><%= newSelect.getNewsDislikeCount()%></i>
                     </a>
-                    <%}%>
+                    <%}}%>
                 </div>
                 </div>
 
@@ -214,35 +213,39 @@
                                                     <i class='far fa-heart' style='font-size:24px'><%= commentary.getCommentaryCountLikes()%></i>
                                                 </a>
                                                 <%}%>
+                                                <%Integer userType =(Integer) session.getAttribute("userType_user_session");
+                                                    if(userType != null && (userType == 2 || userType == 4)){%>
                                                 <a data-toggle="modal" data-target="#exampleModal" class=""> 
                                                     <i class='far fa-trash-alt' style='font-size:24px'></i>
                                                 </a>
+                                                <%}%>
                                             </div>
                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Sanción</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form method="" action=""> <%--  --%>
-                                                                <p>Si no quiere sancionar al usuario solo cierre esta ventana</p>
-                                                                <div class="form-group" >
-                                                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                                                    <input type="text" class="form-control" id="recipient-name">
-                                                                </div>
+                                                            <form action="./Sancionar" method="POST"  >
                                                                 <div class="form-group">
-                                                                    <label for="message-text" class="col-form-label">Message:</label>
-                                                                    <textarea class="form-control" id="message-text"></textarea>
+                                                                    <label for="sancion">Sancion</label>
+                                                                    <select name="sancion" id="sancion" class="form-control">
+                                                                        <option value="1">Temporal</option>
+                                                                        <option value="2">Permanente</option>
+                                                                    </select>
+                                                                    |<input type="hidden" name="idUser" value="<%= commentary.getCommentaryUser()%>">
+                                                                    <input type="hidden" name="idCom" value="<%= commentary.getIdcommentary() %>">
+                                                                    <input type="hidden" name="idNew" value="<%= commentary.getCommentaryNews()%>">
                                                                 </div>
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <a href="Commentary?comid=<%= commentary.getIdcommentary()%>&acc=deleteCom&not=<%= newSelect.getIdnews()%>" class="btn btn-secondary" >Close</a>
-                                                            <a type="button" class="btn btn-primary">Send message</a>
+                                                            <a type="button" class="btn btn-secondary" data-dismiss="modal">Borrar Comentario</a>
+                                                            <input type="submit" class="btn btn-primary">Borrar Comentario y Sancionar</input>
                                                         </div>
                                                     </div>
                                                 </div>

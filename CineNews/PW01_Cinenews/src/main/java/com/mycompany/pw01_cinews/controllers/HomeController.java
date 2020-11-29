@@ -44,14 +44,17 @@ public class HomeController extends HttpServlet {
             List<NewsModel> news = null;
             news = NewsDAO.GetNews();
             request.setAttribute("News", news);
+            List<NewsModel> newsMostLike = null;
+            newsMostLike = NewsDAO.GetNewsMostLiked();
+            request.setAttribute("MostLike", newsMostLike);
             List<MediaModel> media = null;
             media = MediaDAO.GetMedia();
             request.setAttribute("Medias", media);
-            request.getRequestDispatcher("home.jsp").forward(request,response);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("home.jsp").forward(request,response);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     /**
@@ -65,8 +68,8 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        request.getRequestDispatcher("home.jsp").forward(request,response);
+
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     /**

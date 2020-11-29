@@ -41,6 +41,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "ViewNew", urlPatterns = {"/ViewNew"})
 public class ViewNewController extends HttpServlet {
+
     Integer idu = 0;
     UserModel author = null;
     NewsModel news = null;
@@ -48,6 +49,8 @@ public class ViewNewController extends HttpServlet {
     List<CommentaryModel> comments = null;
     List<AnswerModel> answers = null;
     Boolean isFavNew = null;
+    Boolean user_session;
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -69,20 +72,22 @@ public class ViewNewController extends HttpServlet {
             author = UserDAO.UserSelectById(news.getNewsAuthor());
             comments = CommentaryDAO.SelectCommentsNews(idu);
             answers = AnswerDAO.SelectAnswerNews(idu);
-            isFavNew = FavoriteNewsDAO.IsFavNew(idu, (Integer) session.getAttribute("id_user_session"));
+            if (session.getAttribute("id_user_session") != null) {
+                isFavNew = FavoriteNewsDAO.IsFavNew(idu, (Integer) session.getAttribute("id_user_session"));
+                request.setAttribute("isFavNew", isFavNew);
+            }
             List<LikeCommentaryModel> likeNews = LikeCommentaryDAO.GetLikesByNew(idu);
             List<LikeAnswerModel> likeAnswerNews = LikeAnswerDAO.GetLikesAnswerByNew(idu);
             List<LikeDislikeNewsModel> listLikeDislike = LikeDislikesNewsDAO.GetLikesByNew(idu);
             request.setAttribute("listLikeDislike", listLikeDislike);
             request.setAttribute("likeAnswerNews", likeAnswerNews);
             request.setAttribute("likeNews", likeNews);
-            request.setAttribute("isFavNew", isFavNew);
             request.setAttribute("News", news);
             request.setAttribute("Medias", media);
             request.setAttribute("User", author);
             request.setAttribute("Comments", comments);
             request.setAttribute("Answers", answers);
-            request.getRequestDispatcher("viewnew.jsp").forward(request,response);
+            request.getRequestDispatcher("viewnew.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ViewNewController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -100,18 +105,18 @@ public class ViewNewController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("accion");
-        switch(action){
-            case "Comentar":{
+        switch (action) {
+            case "Comentar": {
                 String commentaryContent = request.getParameter("content");
-                if(commentaryContent != null && commentaryContent != ""){
+                if (commentaryContent != null && commentaryContent != "") {
                     try {
                         HttpSession session = request.getSession();
                         Integer idNews = idu;
-                        Integer idUser =(Integer) session.getAttribute("id_user_session");
+                        Integer idUser = (Integer) session.getAttribute("id_user_session");
                         java.util.Date dt = new java.util.Date();
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String currentTime = sdf.format(dt);
-                        CommentaryModel com = new CommentaryModel(commentaryContent, idNews, idUser, 0,currentTime);
+                        CommentaryModel com = new CommentaryModel(commentaryContent, idNews, idUser, 0, currentTime);
                         CommentaryDAO.InsertCommentary(com);
                         comments = CommentaryDAO.SelectCommentsNews(idu);
                     } catch (SQLException ex) {
@@ -120,15 +125,15 @@ public class ViewNewController extends HttpServlet {
                 }
                 break;
             }
-            
-            case "Responder":{
+
+            case "Responder": {
                 String commentaryContent = request.getParameter("content");
-                if(commentaryContent != null && commentaryContent != ""){
+                if (commentaryContent != null && commentaryContent != "") {
                     try {
-                        Integer commentaryId =Integer.parseInt(request.getParameter("comentario"));
+                        Integer commentaryId = Integer.parseInt(request.getParameter("comentario"));
                         HttpSession session = request.getSession();
                         Integer idNews = idu;
-                        Integer idUser =(Integer) session.getAttribute("id_user_session");
+                        Integer idUser = (Integer) session.getAttribute("id_user_session");
                         java.util.Date dt = new java.util.Date();
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String currentTime = sdf.format(dt);
@@ -147,7 +152,7 @@ public class ViewNewController extends HttpServlet {
         request.setAttribute("Medias", media);
         request.setAttribute("User", author);
         request.setAttribute("Comments", comments);
-        request.getRequestDispatcher("viewnew.jsp").forward(request,response);
+        request.getRequestDispatcher("viewnew.jsp").forward(request, response);
     }
 
     /**

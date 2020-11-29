@@ -47,15 +47,23 @@ public class CreateNewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String acc = request.getParameter("acc");
+        System.out.println(acc);
         try {
             List<CategoryModel> categories = null;
             categories = CategoryDAO.GetCategories();
             request.setAttribute("Categories", categories);
-            request.getRequestDispatcher("createnew.jsp").forward(request,response);
+            request.setAttribute("acc", acc);
+            if (acc.equals("editar") || acc.equals("editarDeny")) {
+                Integer id = Integer.parseInt(request.getParameter("idNew"));
+                NewsModel news = NewsDAO.GetNewsById(id);
+                request.setAttribute("new", news);
+            }
+            request.getRequestDispatcher("createnew.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("createnew.jsp").forward(request,response);
+        request.getRequestDispatcher("createnew.jsp").forward(request, response);
     }
 
     /**
@@ -74,62 +82,148 @@ public class CreateNewController extends HttpServlet {
         String content = request.getParameter("content");
         String stringCategory = request.getParameter("category");
         int category = Integer.parseInt(stringCategory, 10);
-        //Media 1
-        Part file = request.getPart("image");
-        String nameImage = file.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file.getContentType());
-        String path = request.getServletContext().getRealPath("");
-        String fullPath = path + FileUtils.RUTE_USER_IMAGE + "/" + nameImage;
-        file.write(fullPath);
-        fullPath = FileUtils.RUTE_USER_IMAGE + "/" + nameImage;
-        //Media 2
-        Part file2 = request.getPart("image2");
-        String nameImage2 = file2.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file2.getContentType());
-        String path2 = request.getServletContext().getRealPath("");
-        String fullPath2 = path2 + FileUtils.RUTE_USER_IMAGE + "/" + nameImage2;
-        file2.write(fullPath2);
-        fullPath2 = FileUtils.RUTE_USER_IMAGE + "/" + nameImage2;
-        //Media 3  
-        Part file3 = request.getPart("image3");
-        String nameImage3 = file3.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file3.getContentType());
-        String path3 = request.getServletContext().getRealPath("");
-        String fullPath3 = path3 + FileUtils.RUTE_USER_IMAGE + "/" + nameImage3;
-        file3.write(fullPath3);
-        fullPath3 = FileUtils.RUTE_USER_IMAGE + "/" + nameImage3;  
-        
-        HttpSession session = request.getSession();
-        String user_id_string = session.getAttribute("id_user_session").toString();
-        Integer user_id = Integer.parseInt(user_id_string);
-        java.util.Date dt = new java.util.Date(); 
-        java.text.SimpleDateFormat sdf = 
-        new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(dt); 
-        if(title != null || description != null || content != null){
-            if((title != null && description != null && content != null) && (!"".equals(title) && !"".equals(description) && !"".equals(content))){
-                try {
-                    NewsModel news = new NewsModel(title, description, content, category, user_id, 1, currentTime);
-                    NewsDAO.InsertNews(news);
-                    int id = NewsDAO.GetLastId();
-                    MediaModel media = new MediaModel(fullPath, id);
-                    MediaDAO.InsertMedia(media);
-                    media.setMediaUrl(fullPath2);
-                    MediaDAO.InsertMedia(media);
-                    media.setMediaUrl(fullPath3);
-                    MediaDAO.InsertMedia(media);
-                    request.getRequestDispatcher("Home").forward(request,response);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+        String acc = request.getParameter("acc");
+        switch (acc) {
+            case "crear":
+                {
+                    HttpSession session = request.getSession();
+                    String user_id_string = session.getAttribute("id_user_session").toString();
+                    Integer user_id = Integer.parseInt(user_id_string);
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String currentTime = sdf.format(dt);
+                    if (title != null || description != null || content != null) {
+                        if ((title != null && description != null && content != null) && (!"".equals(title) && !"".equals(description) && !"".equals(content))) {
+                            //Media 1
+                            Part file = request.getPart("image");
+                            String nameImage = file.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file.getContentType());
+                            String path = request.getServletContext().getRealPath("");
+                            String fullPath = path + FileUtils.RUTE_USER_IMAGE + "/" + nameImage;
+                            file.write(fullPath);
+                            fullPath = FileUtils.RUTE_USER_IMAGE + "/" + nameImage;
+                            //Media 2
+                            Part file2 = request.getPart("image2");
+                            String nameImage2 = file2.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file2.getContentType());
+                            String path2 = request.getServletContext().getRealPath("");
+                            String fullPath2 = path2 + FileUtils.RUTE_USER_IMAGE + "/" + nameImage2;
+                            file2.write(fullPath2);
+                            fullPath2 = FileUtils.RUTE_USER_IMAGE + "/" + nameImage2;
+                            //Media 3
+                            Part file3 = request.getPart("image3");
+                            String nameImage3 = file3.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file3.getContentType());
+                            String path3 = request.getServletContext().getRealPath("");
+                            String fullPath3 = path3 + FileUtils.RUTE_USER_IMAGE + "/" + nameImage3;
+                            file3.write(fullPath3);
+                            fullPath3 = FileUtils.RUTE_USER_IMAGE + "/" + nameImage3;
+                            try {
+                                NewsModel news = new NewsModel(title, description, content, category, user_id, 1, currentTime);
+                                NewsDAO.InsertNews(news);
+                                int id = NewsDAO.GetLastId();
+                                MediaModel media = new MediaModel(fullPath, id);
+                                MediaDAO.InsertMedia(media);
+                                media.setMediaUrl(fullPath2);
+                                MediaDAO.InsertMedia(media);
+                                media.setMediaUrl(fullPath3);
+                                MediaDAO.InsertMedia(media);
+                                request.getRequestDispatcher("Home").forward(request, response);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else {
+                            try {
+                                NewsModel news = new NewsModel(title, description, content, category, user_id, 0, currentTime);
+                                NewsDAO.InsertNews(news);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }       break;
                 }
-            }
-            else{
-                try {
-                    NewsModel news = new NewsModel(title, description, content, category, user_id, 0, currentTime);
-                    NewsDAO.InsertNews(news);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+            case "editar":
+                {
+                    Integer id = Integer.parseInt(request.getParameter("idNew"));
+                    NewsModel editNew = null;
+                    try {
+                        editNew = NewsDAO.GetNewsById(id);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }       java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String currentTime = sdf.format(dt);
+                    if (title != null || description != null || content != null) {
+                        if ((title != null && description != null && content != null) && (!"".equals(title) && !"".equals(description) && !"".equals(content))) {
+                            try {
+                                //Media 1
+                                Part file = request.getPart("image");
+                                String nameImage = file.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file.getContentType());
+                                String path = request.getServletContext().getRealPath("");
+                                String fullPath = path + FileUtils.RUTE_USER_IMAGE + "/" + nameImage;
+                                file.write(fullPath);
+                                fullPath = FileUtils.RUTE_USER_IMAGE + "/" + nameImage;
+                                //Media 2
+                                Part file2 = request.getPart("image2");
+                                String nameImage2 = file2.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file2.getContentType());
+                                String path2 = request.getServletContext().getRealPath("");
+                                String fullPath2 = path2 + FileUtils.RUTE_USER_IMAGE + "/" + nameImage2;
+                                file2.write(fullPath2);
+                                fullPath2 = FileUtils.RUTE_USER_IMAGE + "/" + nameImage2;
+                                //Media 3
+                                Part file3 = request.getPart("image3");
+                                String nameImage3 = file3.getName() + System.currentTimeMillis() + FileUtils.GetExtension(file3.getContentType());
+                                String path3 = request.getServletContext().getRealPath("");
+                                String fullPath3 = path3 + FileUtils.RUTE_USER_IMAGE + "/" + nameImage3;
+                                file3.write(fullPath3);
+                                fullPath3 = FileUtils.RUTE_USER_IMAGE + "/" + nameImage3;
+                                
+                                NewsModel news = new NewsModel(editNew.getIdnews(), title, description, content, category, editNew.getNewsAuthor(), 1, currentTime);
+                                NewsDAO.UpdateNew(news);
+                                MediaModel media = new MediaModel(fullPath, id);
+                                MediaDAO.InsertMedia(media);
+                                media.setMediaUrl(fullPath2);
+                                MediaDAO.InsertMedia(media);
+                                media.setMediaUrl(fullPath3);
+                                MediaDAO.InsertMedia(media);
+                                request.getRequestDispatcher("Home").forward(request, response);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    } else {
+                        try {
+                            NewsModel news = new NewsModel(editNew.getIdnews(), title, description, content, category, editNew.getNewsAuthor(), 0, currentTime);
+                            NewsDAO.UpdateNew(news);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }       break;
                 }
-            }
+            case "editarDeny":
+                {
+                    Integer id = Integer.parseInt(request.getParameter("idNew"));
+                    NewsModel editNew = null;
+                    try {
+                        editNew = NewsDAO.GetNewsById(id);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }       java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String currentTime = sdf.format(dt);
+                    if ((title != null && description != null && content != null) && (!"".equals(title) && !"".equals(description) && !"".equals(content))) {
+                        try {
+                            NewsModel news = new NewsModel(editNew.getIdnews(), title, description, content, category, editNew.getNewsAuthor(), 1, currentTime);
+                            NewsDAO.UpdateNew(news);
+                            request.getRequestDispatcher("Home").forward(request, response);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(CreateNewController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        System.out.println("Falta informacion");
+                    }       request.getRequestDispatcher("Home").forward(request, response);
+                    break;
+                }
+            default:
+                break;
         }
-        request.getRequestDispatcher("Home").forward(request,response);
     }
 
     /**
