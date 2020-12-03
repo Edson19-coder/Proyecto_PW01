@@ -21,8 +21,8 @@ public class DbConnection {
     static {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver"); //Mas de uso general
         //dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); //SOLO PARA JAVA 
-        dataSource.setUrl("jdbc:mysql://localhost:3306/cineNews_db?useUnicode=true&useJDBCCompliantTimeZoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-        dataSource.setUsername("root");
+        dataSource.setUrl("jdbc:mysql://cinenews-db.cihtglcmlbyq.us-east-1.rds.amazonaws.com:3306/cinenews_db?useUnicode=true&useJDBCCompliantTimeZoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        dataSource.setUsername("admin");
         dataSource.setPassword("solido20");
     }
     

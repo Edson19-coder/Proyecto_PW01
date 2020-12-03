@@ -215,40 +215,10 @@
                                                 <%}%>
                                                 <%Integer userType =(Integer) session.getAttribute("userType_user_session");
                                                     if(userType != null && (userType == 2 || userType == 4)){%>
-                                                <a data-toggle="modal" data-target="#exampleModal" class=""> 
+                                                <a href="Commentary?comid=<%= commentary.getIdcommentary()%>&acc=deleteCom&not=<%= newSelect.getIdnews()%>"> 
                                                     <i class='far fa-trash-alt' style='font-size:24px'></i>
                                                 </a>
                                                 <%}%>
-                                            </div>
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="./Sancionar" method="POST"  >
-                                                                <div class="form-group">
-                                                                    <label for="sancion">Sancion</label>
-                                                                    <select name="sancion" id="sancion" class="form-control">
-                                                                        <option value="1">Temporal</option>
-                                                                        <option value="2">Permanente</option>
-                                                                    </select>
-                                                                    |<input type="hidden" name="idUser" value="<%= commentary.getCommentaryUser()%>">
-                                                                    <input type="hidden" name="idCom" value="<%= commentary.getIdcommentary() %>">
-                                                                    <input type="hidden" name="idNew" value="<%= commentary.getCommentaryNews()%>">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a type="button" class="btn btn-secondary" data-dismiss="modal">Borrar Comentario</a>
-                                                            <input type="submit" class="btn btn-primary">Borrar Comentario y Sancionar</input>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="comment-content"><%= commentary.getCommentaryContent()%></div>

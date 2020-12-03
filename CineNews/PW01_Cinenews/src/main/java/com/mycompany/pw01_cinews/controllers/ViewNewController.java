@@ -146,13 +146,14 @@ public class ViewNewController extends HttpServlet {
                 break;
             }
         }
-        request.setAttribute("isFavNew", isFavNew);
-        request.setAttribute("Answers", answers);
-        request.setAttribute("News", news);
-        request.setAttribute("Medias", media);
-        request.setAttribute("User", author);
-        request.setAttribute("Comments", comments);
-        request.getRequestDispatcher("viewnew.jsp").forward(request, response);
+        //request.setAttribute("isFavNew", isFavNew);
+        //request.setAttribute("Answers", answers);
+        //request.setAttribute("News", news);
+        //request.setAttribute("Medias", media);
+        //request.setAttribute("User", author);
+        //request.setAttribute("Comments", comments);
+        //request.getRequestDispatcher("viewnew.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/ViewNew?Noticia=" + idu);
     }
 
     /**

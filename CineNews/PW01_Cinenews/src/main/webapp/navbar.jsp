@@ -26,7 +26,7 @@
                 <%if (us == null) {%>
                 <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account <i class='far fa-user-circle' style='font-size:17px;color:rgba(255, 255, 255, 0.432)'></i>  </a>
                 <%} else {%>
-                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= us%></a>
+                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-left: 30px;"><%= us%></a>
                 <%}%>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <%
@@ -56,16 +56,16 @@
                 <a href="Home" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="CategoryView?category=1&name=Movies" class="nav-link">Movies</a>
+                <a href="CategoryView?category=5&name=Movies" class="nav-link">Movies</a>
             </li>
             <li class="nav-item">
-                <a href="CategoryView?category=2&name=Series" class="nav-link">Series</a>
+                <a href="CategoryView?category=6&name=Series" class="nav-link">Series</a>
             </li>
             <li class="nav-item">
-                <a href="CategoryView?category=3&name=Premieres" class="nav-link">Premieres</a>
+                <a href="CategoryView?category=7&name=Premieres" class="nav-link">Premieres</a>
             </li>
             <li class="nav-item">
-                <a href="CategoryView?category=4&name=Reviews" class="nav-link">Reviews</a>
+                <a href="CategoryView?category=8&name=Reviews" class="nav-link">Reviews</a>
             </li>
         </ul>
 
